@@ -1,0 +1,8 @@
+body { background: #0b0c10; color: #f8f9fa; }
+.navbar { margin-bottom: 0; }
+.card { background: #15171c; border-color: #2a2e37; }
+.form-control, .form-select, .btn { border-radius: 10px; }
+.table { color: #e9ecef; }
+.table thead th { border-bottom-color: #2a2e37; }
+.table td, .table th { border-top-color: #2a2e37; }
+.badge { font-weight: 500; }

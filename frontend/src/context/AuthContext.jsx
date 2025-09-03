@@ -1,30 +1,36 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-export const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    const raw = localStorage.getItem("tm_user");
+    return raw ? JSON.parse(raw) : null;
+  });
+  const [token, setToken] = useState(() => localStorage.getItem("tm_token"));
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setUser({ token });
-    }
-  }, []);
+    if (user) localStorage.setItem("tm_user", JSON.stringify(user));
+    else localStorage.removeItem("tm_user");
+  }, [user]);
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    setUser({ token });
+  useEffect(() => {
+    if (token) localStorage.setItem("tm_token", token);
+    else localStorage.removeItem("tm_token");
+  }, [token]);
+
+  const login = (payload) => {
+    setUser({ _id: payload._id, name: payload.name, email: payload.email });
+    setToken(payload.token);
   };
 
   const logout = () => {
-    localStorage.removeItem("token");
     setUser(null);
+    setToken(null);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = useMemo(() => ({ user, token, login, logout, setUser }), [user, token]);
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
+export const useAuth = () => useContext(AuthContext);
