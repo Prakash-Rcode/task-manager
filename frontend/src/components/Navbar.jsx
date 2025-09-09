@@ -1,3 +1,4 @@
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -20,6 +21,9 @@ export default function Navbar() {
               <>
                 <li className="nav-item me-3">
                   <span className="navbar-text">Hi, {user.name}</span>
+                </li>
+                <li className="nav-item me-3">
+                  <Link className="nav-link" to="/create">Create Task</Link>
                 </li>
                 <li className="nav-item">
                   <button className="btn btn-outline-light btn-sm" onClick={handleLogout}>

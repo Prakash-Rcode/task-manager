@@ -1,28 +1,29 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axios";
-import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
+
 
 export default function Signup() {
-  const { login } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    setLoading(true);
-    await api.post("/auth/signup", form);  
-    
-    navigate("/login");                   
-  } catch (err) {
-    alert(err.response?.data?.message || "Signup failed");
-  } finally {
-    setLoading(false);
-  }
-};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      await api.post("/auth/signup", form);
+      toast.success("Account created successfully! Please login.");
+      navigate("/login"); // go back to login
+    } catch (err) {
+      alert(err.response?.data?.message || "Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container py-4" style={{ maxWidth: 520 }}>

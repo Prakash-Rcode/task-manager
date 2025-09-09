@@ -1,8 +1,144 @@
-body { background: #0b0c10; color: #f8f9fa; }
-.navbar { margin-bottom: 0; }
-.card { background: #15171c; border-color: #2a2e37; }
-.form-control, .form-select, .btn { border-radius: 10px; }
-.table { color: #e9ecef; }
-.table thead th { border-bottom-color: #2a2e37; }
-.table td, .table th { border-top-color: #2a2e37; }
-.badge { font-weight: 500; }
+
+body {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #f1f5f9;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+.navbar {
+  background: linear-gradient(90deg, #1a2a6c, #b21f1f, #fdbb2d);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
+}
+.navbar .navbar-brand {
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff !important;
+}
+.navbar .nav-link {
+  color: #fff !important;
+  transition: color 0.2s ease;
+}
+.navbar .nav-link:hover {
+  color: #ffd369 !important;
+}
+
+
+.card {
+  background: #1e293b;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+
+.task-card {
+  border-radius: 16px;
+  background: linear-gradient(145deg, #1e293b, #111827);
+  border: 1px solid #334155;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+}
+.task-card .card-title {
+  font-weight: 600;
+  color: #f8fafc;
+}
+.task-card .card-text {
+  color: #cbd5e1;
+}
+
+.form-control,
+.form-select {
+  background: #0f172a;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+  border-radius: 12px;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 0.25rem rgba(56, 189, 248, 0.4);
+  background: #1e293b;
+  color: #fff;
+}
+
+.btn {
+  border-radius: 12px;
+  font-weight: 500;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+
+.btn-primary {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+  border: none;
+}
+.btn-danger {
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+  border: none;
+}
+.btn-outline-primary {
+  border: 2px solid #38bdf8;
+  color: #38bdf8;
+}
+.btn-outline-primary:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.table {
+  color: #e2e8f0;
+}
+.table thead th {
+  border-bottom: 2px solid #475569;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+.table td,
+.table th {
+  border-top: 1px solid #334155;
+}
+.table tr:hover {
+  background: rgba(148, 163, 184, 0.1);
+}
+
+
+.badge {
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+.badge-pending {
+  background: #fbbf24;
+  color: #1e293b;
+}
+.badge-progress {
+  background: #3b82f6;
+}
+.badge-completed {
+  background: #22c55e;
+}
+
+
+.alert {
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+* {
+  transition: all 0.15s ease-in-out;
+}
+.task-card .text-info {
+  color: #38bdf8 !important;
+  font-weight: 500;
+}

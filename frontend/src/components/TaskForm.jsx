@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const defaultState = { title: "", description: "", status: "Pending", dueDate: "" };
 
@@ -7,12 +7,11 @@ export default function TaskForm({ onSubmit, editing }) {
 
   useEffect(() => {
     if (editing) {
-      const { title, description = "", status = "Pending", dueDate } = editing;
       setForm({
-        title,
-        description,
-        status,
-        dueDate: dueDate ? new Date(dueDate).toISOString().slice(0, 10) : ""
+        title: editing.title || "",
+        description: editing.description || "",
+        status: editing.status || "Pending",
+        dueDate: editing.dueDate ? new Date(editing.dueDate).toISOString().slice(0, 10) : ""
       });
     } else {
       setForm(defaultState);
@@ -25,12 +24,10 @@ export default function TaskForm({ onSubmit, editing }) {
     e.preventDefault();
     if (!form.title.trim()) return alert("Title is required");
     onSubmit(form);
-    setForm(defaultState);
   };
 
   return (
-    <form className="card card-body mb-3" onSubmit={handleSubmit}>
-      <h5 className="mb-3">{editing ? "Update Task" : "Create Task"}</h5>
+    <form className="card card-body" onSubmit={handleSubmit}>
       <div className="mb-2">
         <label className="form-label">Title *</label>
         <input name="title" className="form-control" value={form.title} onChange={handleChange} required />
@@ -53,7 +50,7 @@ export default function TaskForm({ onSubmit, editing }) {
           <input type="date" name="dueDate" className="form-control" value={form.dueDate} onChange={handleChange} />
         </div>
       </div>
-      <button className="btn btn-primary">{editing ? "Save Changes" : "Add Task"}</button>
+      <button className="btn btn-primary">{editing ? "Save Changes" : "Create Task"}</button>
     </form>
   );
 }

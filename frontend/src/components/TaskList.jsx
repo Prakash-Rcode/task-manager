@@ -36,9 +36,7 @@ export default function TaskList({ tasks, onEdit, onDelete }) {
               <td>
                 <div className="btn-group btn-group-sm">
                   <button className="btn btn-outline-primary" onClick={() => onEdit(t)}>Edit</button>
-<button className="btn btn-outline-danger" onClick={() => onDelete(t._id)}>
-  Delete
-</button>
+                  <button className="btn btn-outline-danger" onClick={() => onDelete(t._id)}>Delete</button>
                 </div>
               </td>
             </tr>
